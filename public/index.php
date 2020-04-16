@@ -58,3 +58,7 @@ $response = $kernel->handle(
 $response->send();
 
 $kernel->terminate($request, $response);
+
+//3/24 追記
+//scssをcssにする処理
+SassCompiler::run("scss/", "css/");

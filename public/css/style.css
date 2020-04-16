@@ -1,0 +1,200 @@
+* {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  font-family: "メイリオ", Meiryo;
+  color: #2b2b2b;
+}
+.wrapper {
+  min-height: 100vh;
+  position: relative;
+}
+nav {
+  height: 65px;
+  background-color: #fff;
+}
+nav p {
+  font-size: 10px;
+  text-align: center;
+}
+nav p img {
+  vertical-align: text-bottom;
+}
+.inner {
+  max-width: 100%;
+  margin: 0 auto;
+  width: 980px;
+}
+nav > .flex {
+  align-items: center;
+  height: 65px;
+}
+.flex {
+  display: flex;
+  padding-top: 5px;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.flex li {
+  list-style: none;
+}
+li a {
+  text-decoration: none;
+}
+.button-area {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #fff;
+  text-align: center;
+  width: 500px;
+  height: 200px;
+  border-radius: 50px 3px;
+  border-radius: 50px 3px;
+}
+.button-area .inline-block-buttton {
+  display: inline-block;
+  margin-top: 50px;
+}
+.button-area .inline-block-buttton .btn-login {
+  position: relative;
+  display: inline-block;
+  width: 100px;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  color: #fff;
+  background: #f5b1c2;
+  /*背景色*/
+  border-bottom: solid 2px #f29bb1;
+  /*少し濃い目の色に*/
+  border-radius: 4px;
+  /*角の丸み*/
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
+}
+.button-area .inline-block-buttton .btn-login:active {
+  border-bottom: solid 2px #f5b1c2;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+.button-area .inline-block-buttton .btn-register {
+  position: relative;
+  display: inline-block;
+  width: 100px;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  color: #fff;
+  background: #b1c2f5;
+  /*背景色*/
+  border-bottom: solid 2px #9bb1f2;
+  /*少し濃い目の色に*/
+  border-radius: 4px;
+  /*角の丸み*/
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
+}
+.button-area .inline-block-buttton .btn-register:active {
+  border-bottom: solid 2px #b1c2f5;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+.footer {
+  position: absolute;
+  /*←絶対位置*/
+  bottom: 0;
+  /*下に固定*/
+  width: 100%;
+  text-align: center;
+}
+.footer .copyright {
+  color: #c0c0c0;
+}
+.background {
+  width: 100vw;
+  height: 100vh;
+}
+.background-img {
+  background-image: url(../images/caffee.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.card-area {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.itemfield {
+  background-color: #e6e6fa;
+  border-radius: 1em;
+  width: 500px;
+  padding: 10px;
+}
+.item-area {
+  margin-top: 100px;
+}
+.item-area h3 {
+  font-family: "Gotu", sans-serif;
+}
+.submit-button {
+  position: relative;
+  display: inline-block;
+  width: 100px;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  color: #fff;
+  background: #f5b1c2;
+  /*背景色*/
+  border-bottom: solid 2px #f29bb1;
+  /*少し濃い目の色に*/
+  border-radius: 4px;
+  /*角の丸み*/
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
+}
+.submit-button:active {
+  border-bottom: solid 2px #f5b1c2;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+.trash {
+  margin-left: 10px;
+}
+.contents-name {
+  display: inline-block;
+  font-family: "Courgette", cursive;
+  font-size: 18px;
+}
+.plus-icon {
+  display: inline;
+  position: absolute;
+  margin: 5px 20px;
+  right: 0;
+}
+.day-area {
+  margin-top: 20px;
+  height: 400px;
+  background-color: #fceef2;
+}
+.month-area {
+  margin-top: 20px;
+  height: 400px;
+  background-color: #f4eaff;
+}
+.want-area {
+  margin-top: 10px;
+  height: 300px;
+  background-color: #fff4ea;
+}
+.do-area {
+  margin-top: 10px;
+  height: 300px;
+  background-color: #f2fcee;
+}
+.objective-area {
+  margin-top: 10px;
+  height: 300px;
+  background-color: #eef2fc;
+}
+.table-area {
+  margin: 10px;
+  border-collapse: separate;
+  border-spacing: 0px 8px;
+}
