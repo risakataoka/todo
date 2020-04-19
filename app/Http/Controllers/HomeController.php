@@ -9,9 +9,9 @@ use App\Day;
 use App\Want;
 use App\Dotask;
 use App\Objective;
+use App\Month;
 
 use Carbon\Carbon;
-
 
 
 class HomeController extends Controller
@@ -61,13 +61,53 @@ class HomeController extends Controller
             ->where('username', '=', $name)
             ->get();
 
+        //クエリビルダでsql文実行
+        $month = DB::table('month')
+            ->select(DB::raw('day, task, username, id'))
+            ->where('username', '=', $name)
+            ->get();
+
+
+        $year = 2020;
+        $month = 4;
+
+        //yyyy-mm-ddの形式にする
+        $dateStr = sprintf('%04d-%02d-01', $year, $month);
+        //date型に整形
+        $date = new Carbon($dateStr);
+
+        $count = 31 + $date->dayOfWeek;
+        $count = ceil($count / 7) * 7;
+
+        $dates = [];
+
+        for ($i = 0; $i < $count; $i++, $date->addDay()) {
+            // copyしないと全部同じオブジェクトを入れてしまうことになる
+            $dates[] = $date->copy();
+        }
+
+        $days = $date->daysInMonth; // 月に何日あるか取得
+        $daysParWeek = $date::DAYS_PER_WEEK; // 1週の日数を取得(デフォルトは 7 が設定されている)
+        $dayOfWeek = $date->startOfMonth()->dayOfWeek; // 1日の曜日(int)を取得
+
+        $result = ceil(($days - ($daysParWeek - $dayOfWeek)) / $daysParWeek) + 1;
+
+
 
         //DB情報をhome.blade.phpに引き継ぐ
         return view('home', [
             'day' => $day,
             'want' => $want,
             'dotask' => $dotask,
-            'objective' => $objective
+            'objective' => $objective,
+            'month' => $month,
+            'dateStr' => $dateStr,
+            'date' => $date,
+            'count' => $count,
+            'dates' => $dates,
+            'result' => $result
+
+
         ]);
     }
     //★★day★★
@@ -181,25 +221,41 @@ class HomeController extends Controller
         return redirect('/home');
     }
 
-
-    //Monthのカレンダー作成
-    public function getCalendarDates($year, $month)
+    //★★month(カレンダー)★★
+    public function monthAdd()
     {
-        $dateStr = sprintf('%04d-%02d-01', $year, $month);
-        $date = new Carbon($dateStr);
-        // カレンダーを四角形にするため、前月となる左上の隙間用のデータを入れるためずらす
-        $date->subDay($date->dayOfWeek);
-        // 同上。右下の隙間のための計算。
-        $count = 31 + $date->dayOfWeek;
-        $count = ceil($count / 7) * 7;
-        $dates = [];
+        return view('additem.month');
+    }
 
-        for ($i = 0; $i < $count; $i++, $date->addDay()) {
-            // copyしないと全部同じオブジェクトを入れてしまうことになる
-            $dates[] = $date->copy();
-        }
+
+    public function monthItemAdd(Request $request)
+    {
+        //インスタンス作成
+        $month = new Month();
+
+        //モデルインスタンスのtask,username属性に代入
+        $month->day = $request->day;
+        $month->task = $request->task;
+        $month->username = $request->username;
+
+
+        //saveメソッドが呼ばれると新しいレコードがデータベースに挿入される
+        $month->save();
+
         return redirect('/home');
     }
+
+
+
+    function test()
+    {
+
+
+        /*return view('/home', [
+            'dt' => $dt
+        ]);*/ }
+
+
 
 
 

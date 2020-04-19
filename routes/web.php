@@ -49,6 +49,9 @@ Route::post('home/doItemAdd', 'HomeController@doItemAdd');
 Route::get('additem/objective', 'HomeController@objectiveAdd');
 Route::post('home/objectiveItemAdd', 'HomeController@objectiveItemAdd');
 
+Route::get('additem/month', 'HomeController@monthAdd');
+Route::post('home/monthItemAdd', 'HomeController@monthItemAdd');
+
 //アイテム削除
 Route::delete('/home/day/{day}', 'HomeController@dayItemDelete');
 Route::delete('/home/want/{want}', 'HomeController@wantItemDelete');

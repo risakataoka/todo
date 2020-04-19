@@ -20,7 +20,7 @@
               </a>
             </li>
             <li>
-              <a href="">
+              <a href="{{ url('additem/month') }}">
                 <p><img class="menu-icon" src="{{ asset('images/month.png') }}" width="25" height="26 " alt="month">Month</p>
               </a>
             </li>
@@ -58,6 +58,7 @@
   <link href="https://fonts.googleapis.com/css?family=Courgette&display=swap" rel="stylesheet">
 
   <script src="{{ mix('js/addItem.js') }}"></script>
+  <script src="{{ mix('js/addItemMonth.js') }}"></script>
 </body>
 
 </html>

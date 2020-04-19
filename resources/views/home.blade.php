@@ -28,26 +28,49 @@
         <div class="col-6">
             <div class="month-area">
                 <h2 class="contents-name">Month</h2>
-                <a href="">
+                <a href="{{ url('additem/month') }}">
                     <img class="plus-icon" src="{{ asset('images/plus.png') }}" width="40" height="40 " alt="plus">
                 </a>
+                <p>{{ $result }}</p>
                 <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            @foreach (['日', '月', '火', '水', '木', '金', '土'] as $dayOfWeek)
-                            <th>{{ $dayOfWeek }}</th>
-                            @endforeach
-                        </tr>
-                    </thead>
+                    <tr>
+                        @foreach (['月', '火', '水', '木', '金', '土', '日'] as $dayOfWeek)
+                        <th>{{ $dayOfWeek }}</th>
+                        @endforeach
+                    </tr>
+                    @foreach ($dates as $date)
+                    @if ($date->day == 1 && $date->format('N') != 1)
+
+
+                    <td colspan="{{ $date->format('N')-1 }}"></td>
+
+                    @endif
+                    @if ($date->format('N') == 1)
+                    <tr>
+                        @endif
+                        <td>
+                            {{ $date->day }}
+                            {{$date->format('N')}}
+                            {{$date->weekOfMonth}}
+
+
+                        </td>
+                        @if ($date->format('N') == 7)
+                    </tr>
+                    @endif
+                    @endforeach
+
 
                 </table>
+
+
             </div>
         </div>
         <div class="col-4">
             <div class="want-area">
                 <h2 class="contents-name">Want</h2>
                 <a href="{{ url('additem/want') }}">
-                    <img class="plus-icon" src="{{ asset('images/plus.png') }}" width="40" height="40 " alt="plus">
+                    <img class="plus-icon" src="{{ asset('images/plus.png') }}" width="40" height="40" alt="plus">
                 </a>
                 <table cellpadding="5" class="table-area">
                     @foreach($want as $wt)

@@ -60,70 +60,60 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 48);
+/******/ 	return __webpack_require__(__webpack_require__.s = 50);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 48:
+/***/ 50:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(49);
+module.exports = __webpack_require__(51);
 
 
 /***/ }),
 
-/***/ 49:
+/***/ 51:
 /***/ (function(module, exports) {
 
-//入力フォームに自動的にカーソルを合わせる
-if (focus) {
-  document.getElementById("focus").focus();
-}
+var changeDay = function changeDay() {
+  var formId = "change-day",
+      // フォームのID名
+  yearName = "year",
+      // 年セレクトボックスのname属性値
+  monthName = "month",
+      // 月セレクトボックスのname属性値
+  dayName = "day",
+      // 日セレクトボックスのname属性値
+  formObj = document.getElementById(formId);
 
-/*window.onload = function getDate() {
-  var yyyy, mm, dd, today;
-  today = new Date();
-  yyyy = today.getFullYear();
-  mm = today.getMonth() + 1;
-  dd = today.getDate();
+  if (formObj) return false;
 
-  //年
-  $Year = "<select>";
-  for (var i = 2000; i <= 2030; i++) {
-    if (i == yyyy) {
-      $Year += '<option value="' + i + '" selected >' + i + "</option>";
-    } else {
-      $Year += '<option value="' + i + '" >' + i + "</option>";
-    }
+  var yearObj = formObj[yearName],
+      monthObj = formObj[monthName],
+      dayObj = formObj[dayName],
+      selectY = yearObj.options[yearObj.selectedIndex].value,
+      selectM = monthObj.options[monthObj.selectedIndex].value,
+      selectD = dayObj.options[dayObj.selectedIndex].value,
+      dateObj = new Date(selectY, selectM, 0),
+      maxDays = dateObj.getDate();
+
+  dayObj.length = 0;
+
+  for (var i = 1; i <= maxDays; i++) {
+    dayObj.options[i] = new Option(i, i);
   }
-  $Year += "</select>";
-  document.getElementById("year").innerHTML = $Year + "年";
 
-  //月
-  $Month = "<select>";
-  for (var i = 1; i <= 12; i++) {
-    if (i == mm) {
-      $Month += '<option value="' + i + '" selected >' + i + "</option>";
-    } else {
-      $Month += '<option value="' + i + '" >' + i + "</option>";
-    }
-  }
-  $Month += "</select>";
-  document.getElementById("month").innerHTML = $Month + "月";
+  dayObj.removeChild(dayObj.options[0]);
 
-  //日付
-  $Day = "<select>";
-  for (var i = 1; i <= 31; i++) {
-    if (i == dd) {
-      $Day += '<option value="' + i + '" selected >' + i + "</option>";
-    } else {
-      $Day += '<option value="' + i + '" >' + i + "</option>";
-    }
+  if (selectD > dayObj.length) {
+    dayObj.options[dayObj.length - 1].selected = true;
+  } else {
+    dayObj.options[selectD - 1].selected = true;
   }
-  $Day += "</select>";
-  document.getElementById("day").innerHTML = $Day + "日";
-};*/
+
+  return true;
+};
 
 /***/ })
 
