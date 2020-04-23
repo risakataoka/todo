@@ -4,8 +4,9 @@
 <div class="container">
     <div class="item-area">
         <h3>Month</h3>
-        <a id="year"></a><a id="month"></a><a id="day"></a>
-        <form action="./" method="post" name="change-day" id="change-day">
+
+        <form method="POST" action="{{ url('home/monthItemAdd') }}">
+            {{ csrf_field() }}
             <table>
                 <tr>
                     <th>日付</th>
@@ -32,7 +33,7 @@
                             <option value="11">11</option>
                             <option value="12">12</option>
                         </select>月
-                        <select name="days">
+                        <select name="day">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -68,12 +69,6 @@
                     </td>
                 </tr>
             </table>
-        </form>
-
-
-        <form method="POST" action="{{ url('home/monthItemAdd') }}">
-            {{ csrf_field() }}
-
             <input class="itemfield" type="text" name="task" placeholder="アイテムを入力してください">
             <input name="username" value="{{ Auth::user()->name }}" style="display: none;">
             <input class="submit-button" type="submit" value="保存">

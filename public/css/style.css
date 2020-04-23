@@ -170,13 +170,56 @@ li a {
 }
 .day-area {
   margin-top: 20px;
-  height: 400px;
+  height: 450px;
   background-color: #fceef2;
 }
 .month-area {
   margin-top: 20px;
-  height: 400px;
+  height: 450px;
   background-color: #f4eaff;
+}
+.calendarTitle {
+  text-align: center;
+}
+.flg-icon {
+  cursor: pointer;
+}
+.flg-icon:hover {
+  opacity: 0.5;
+}
+.flg-icon-window {
+  max-width: 300px;
+  position: absolute;
+  padding: 6px 15px;
+  background-color: #fff;
+  border: 5px double #ccc;
+  display: none;
+  color: #63f;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1.5em;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px #ccc;
+}
+.modal {
+  display: none;
+  height: 100vh;
+  top: 0;
+  width: 100%;
+}
+.modal__bg {
+  background: rgba(0, 0, 0, 0.8);
+  height: 100vh;
+  width: 100%;
+}
+.modal__content {
+  background: #fff;
+  left: 50%;
+  padding: 40px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
 }
 .want-area {
   margin-top: 10px;

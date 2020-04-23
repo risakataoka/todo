@@ -15,7 +15,9 @@ class CreateMonthTable extends Migration
     {
         Schema::create('month', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('day');
+            $table->string('year');
+            $table->string('month');
+            $table->string('day');
             $table->string('task', 200);
             $table->string('username');
             $table->timestamps();

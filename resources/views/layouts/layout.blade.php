@@ -57,6 +57,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Gotu&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Courgette&display=swap" rel="stylesheet">
 
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script src="{{ mix('js/addItem.js') }}"></script>
   <script src="{{ mix('js/addItemMonth.js') }}"></script>
 </body>

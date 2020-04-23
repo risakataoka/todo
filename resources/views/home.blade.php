@@ -31,16 +31,17 @@
                 <a href="{{ url('additem/month') }}">
                     <img class="plus-icon" src="{{ asset('images/plus.png') }}" width="40" height="40 " alt="plus">
                 </a>
-                <p>{{ $result }}</p>
-                <table class="table table-bordered">
+                <p class="calendarTitle">{{ $calendarTitle }}</p>
+                <table class="table table-bordered" style="table-layout:fixed;">
                     <tr>
                         @foreach (['月', '火', '水', '木', '金', '土', '日'] as $dayOfWeek)
                         <th>{{ $dayOfWeek }}</th>
                         @endforeach
                     </tr>
                     @foreach ($dates as $date)
+                    <?php $flg = "false"; ?>
+                    <?php $modalMonthData = array(); ?>
                     @if ($date->day == 1 && $date->format('N') != 1)
-
 
                     <td colspan="{{ $date->format('N')-1 }}"></td>
 
@@ -50,20 +51,33 @@
                         @endif
                         <td>
                             {{ $date->day }}
-                            {{$date->format('N')}}
-                            {{$date->weekOfMonth}}
+                            @foreach ($monthData as $md)
 
+                            @if ($date->year == $md->year && $date->month == $md->month && $date->day == $md->day)
+                            @if ($flg == "false")
+                            <img class="js-modal-open" src="{{ asset('images/flg.png') }}" data-message="{{ $md->task }}" width="15" height="15" alt="flg">
+                            <?php $flg = "true"; ?>
+                            @endif
+                            <?php array_push($modalMonthData, $md->task); ?>
+                            @endif
+                            @endforeach
+                            <?php $cnt = count($modalMonthData); ?>
 
                         </td>
                         @if ($date->format('N') == 7)
                     </tr>
                     @endif
+                    <div class="modal js-modal">
+                        <div class="modal__bg js-modal-close"></div>
+                        <div class="modal__content">
+                            {{ $cnt }}
+                            <a class="js-modal-close" href="">閉じる</a>
+                        </div>
+                        <!--modal__inner-->
+                    </div>
+                    <!--modal-->
                     @endforeach
-
-
                 </table>
-
-
             </div>
         </div>
         <div class="col-4">
@@ -134,4 +148,6 @@
         </div>
     </div>
 </div>
+
+
 @endsection

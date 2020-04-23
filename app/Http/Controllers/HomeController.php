@@ -62,23 +62,20 @@ class HomeController extends Controller
             ->get();
 
         //クエリビルダでsql文実行
-        $month = DB::table('month')
-            ->select(DB::raw('day, task, username, id'))
+        $monthData = DB::table('month')
+            ->select(DB::raw('year, month, day, task, username, id'))
             ->where('username', '=', $name)
             ->get();
 
-
         $year = 2020;
         $month = 4;
+        $calendarTitle = $year . "年" . $month . "月";
 
         //yyyy-mm-ddの形式にする
         $dateStr = sprintf('%04d-%02d-01', $year, $month);
         //date型に整形
         $date = new Carbon($dateStr);
-
-        $count = 31 + $date->dayOfWeek;
-        $count = ceil($count / 7) * 7;
-
+        $count = $date->daysInMonth;
         $dates = [];
 
         for ($i = 0; $i < $count; $i++, $date->addDay()) {
@@ -86,28 +83,15 @@ class HomeController extends Controller
             $dates[] = $date->copy();
         }
 
-        $days = $date->daysInMonth; // 月に何日あるか取得
-        $daysParWeek = $date::DAYS_PER_WEEK; // 1週の日数を取得(デフォルトは 7 が設定されている)
-        $dayOfWeek = $date->startOfMonth()->dayOfWeek; // 1日の曜日(int)を取得
-
-        $result = ceil(($days - ($daysParWeek - $dayOfWeek)) / $daysParWeek) + 1;
-
-
-
         //DB情報をhome.blade.phpに引き継ぐ
         return view('home', [
             'day' => $day,
             'want' => $want,
             'dotask' => $dotask,
             'objective' => $objective,
-            'month' => $month,
-            'dateStr' => $dateStr,
-            'date' => $date,
-            'count' => $count,
+            'monthData' => $monthData,
             'dates' => $dates,
-            'result' => $result
-
-
+            'calendarTitle' => $calendarTitle,
         ]);
     }
     //★★day★★
@@ -234,6 +218,8 @@ class HomeController extends Controller
         $month = new Month();
 
         //モデルインスタンスのtask,username属性に代入
+        $month->year = $request->year;
+        $month->month = $request->month;
         $month->day = $request->day;
         $month->task = $request->task;
         $month->username = $request->username;
@@ -244,19 +230,6 @@ class HomeController extends Controller
 
         return redirect('/home');
     }
-
-
-
-    function test()
-    {
-
-
-        /*return view('/home', [
-            'dt' => $dt
-        ]);*/ }
-
-
-
 
 
 
