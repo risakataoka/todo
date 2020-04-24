@@ -3,6 +3,7 @@ $(function() {
     alert("こんにちは");
   });*/
 
+  //ポップアップウィンドウ
   $(".flg-icon")
     .mouseover(function() {
       // 「?」にマウスが重なった場合の処理です。
@@ -50,7 +51,7 @@ $(function() {
         .hide("fast");
     });
 
-  //windowの方
+  //windowの方　ポップアップウィンドウ
   $.fn.popupHelp = function(config) {
     /**
      * marginTop: 表示対象とウィンドウの高さの差分です。
