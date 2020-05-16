@@ -39,6 +39,7 @@
                         @endforeach
                     </tr>
                     @foreach ($dates as $date)
+                    <?php $flg = "false"; ?>
                     <?php $modalMonthData = array(); ?>
                     @if ($date->day == 1 && $date->format('N') != 1)
 
@@ -53,17 +54,28 @@
                             @foreach ($monthData as $md)
 
                             @if ($date->year == $md->year && $date->month == $md->month && $date->day == $md->day)
+                            @if ($flg == "false")
+                            <img class="js-modal-open" src="{{ asset('images/flg.png') }}" data-message="{{ $md->task }}" width="15" height="15" alt="flg">
+                            <?php $flg = "true"; ?>
+                            @endif
                             <?php array_push($modalMonthData, $md->task); ?>
                             @endif
                             @endforeach
                             <?php $cnt = count($modalMonthData); ?>
-                            @if ($cnt != 0)
-                            <img class="flg-icon" src="{{ asset('images/flg.png') }}" data-message="{{ $md->task }}" width="15" height="15" alt="flg">
-                            @endif
+
                         </td>
                         @if ($date->format('N') == 7)
                     </tr>
                     @endif
+                    <div class="modal js-modal">
+                        <div class="modal__bg js-modal-close"></div>
+                        <div class="modal__content">
+                            {{ $cnt }}
+                            <a class="js-modal-close" href="">閉じる</a>
+                        </div>
+                        <!--modal__inner-->
+                    </div>
+                    <!--modal-->
                     @endforeach
                 </table>
             </div>
@@ -136,4 +148,6 @@
         </div>
     </div>
 </div>
+
+
 @endsection

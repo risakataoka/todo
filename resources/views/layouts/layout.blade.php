@@ -60,9 +60,6 @@
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script src="{{ mix('js/addItem.js') }}"></script>
   <script src="{{ mix('js/addItemMonth.js') }}"></script>
-
-  <script>
-  </script>
 </body>
 
 </html>
