@@ -57,3 +57,4 @@ Route::delete('/home/day/{day}', 'HomeController@dayItemDelete');
 Route::delete('/home/want/{want}', 'HomeController@wantItemDelete');
 Route::delete('/home/do/{dotask}', 'HomeController@doItemDelete');
 Route::delete('/home/objective/{objective}', 'HomeController@objectiveItemDelete');
+Route::post('/home/month/{month}', 'HomeController@delete');

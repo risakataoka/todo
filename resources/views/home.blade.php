@@ -39,8 +39,10 @@
                         @endforeach
                     </tr>
                     @foreach ($dates as $date)
-                    <?php $flg = "false"; ?>
                     <?php $modalMonthData = array(); ?>
+                    <?php $modalMonthDataJson = array(); ?>
+                    <?php $modalMonthId = array(); ?>
+                    <?php $modalMonthIdJson = array(); ?>
                     @if ($date->day == 1 && $date->format('N') != 1)
 
                     <td colspan="{{ $date->format('N')-1 }}"></td>
@@ -52,34 +54,46 @@
                         <td>
                             {{ $date->day }}
                             @foreach ($monthData as $md)
-
                             @if ($date->year == $md->year && $date->month == $md->month && $date->day == $md->day)
-                            @if ($flg == "false")
-                            <img class="js-modal-open" src="{{ asset('images/flg.png') }}" data-message="{{ $md->task }}" width="15" height="15" alt="flg">
-                            <?php $flg = "true"; ?>
-                            @endif
                             <?php array_push($modalMonthData, $md->task); ?>
+                            <?php array_push($modalMonthId, $md->id); ?>
+                            <?php $flg = "true"; ?>
                             @endif
                             @endforeach
                             <?php $cnt = count($modalMonthData); ?>
-
+                            <?php $modalMonthDataJson = json_encode($modalMonthData); ?>
+                            <?php $modalMonthIdJson = json_encode($modalMonthId); ?>
+                            @if ($cnt >= 1)
+                            <button type="button" style="background-color: transparent;" data-toggle="modal" data-day="{{ $date->day }}" data-task="{{ $modalMonthDataJson }}" data-id="{{ $modalMonthIdJson }}" data-target="#Modal">
+                                <img src="{{ asset('images/flg.png') }}" width="15" height="15 " alt="flg">
+                            </button>
+                            @endif
                         </td>
                         @if ($date->format('N') == 7)
                     </tr>
                     @endif
-                    <div class="modal js-modal">
-                        <div class="modal__bg js-modal-close"></div>
-                        <div class="modal__content">
-                            {{ $cnt }}
-                            <a class="js-modal-close" href="">閉じる</a>
-                        </div>
-                        <!--modal__inner-->
-                    </div>
-                    <!--modal-->
                     @endforeach
                 </table>
             </div>
         </div>
+        <!--モーダルここから-->
+        <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="contents">
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--モーダルここまで-->
         <div class="col-4">
             <div class="want-area">
                 <h2 class="contents-name">Want</h2>

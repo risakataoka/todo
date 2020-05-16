@@ -231,10 +231,21 @@ class HomeController extends Controller
         return redirect('/home');
     }
 
-
-
     public function mypage()
     {
         return view('mypage');
+    }
+
+    public function delete(Request $request)
+    {
+        // ユーザ削除処理実行
+
+        $id = $request->id;
+        $list = DB::delete(
+            "delete from month where id = ?",
+            [$request['id']]
+        );
+
+        return redirect('/home');
     }
 }
