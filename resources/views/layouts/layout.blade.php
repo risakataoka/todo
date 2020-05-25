@@ -12,10 +12,10 @@
 <body>
   <div class="wrapper">
     <div class="container">
-      <nav>
-        <div class="menu">
-          <ul class="flex">
-            <li><a href="{{ url('/') }}"><img class="logo" src="{{ asset('images/logo.png') }}" width="100" height="56" alt="logo"></a></li>
+      <div id="header">
+        <h1><a href="{{ url('/') }}"><img class="logo" src="{{ asset('images/logo.png') }}" width="100" height="56" alt="logo"></a></h1>
+        <nav>
+          <ul id="navi">
             <li>
               <a href="{{ url('additem/day') }}">
                 <p><img class="menu-icon" src="{{ asset('images/day.png') }}" width="25" height="26 " alt="day">Day</p>
@@ -41,14 +41,23 @@
                 <p><img class="menu-icon" src="{{ asset('images/objective.png') }}" width="25" height="26 " alt="objective">Objective</p>
               </a>
             </li>
-            <li>
+            <li class="adjust">
               <a href="{{ action('HomeController@mypage') }}">
                 <p><img class="menu-icon" src="{{ asset('images/mypage.png') }}" width="25" height="26 " alt="mypage">Mypage</p>
               </a>
             </li>
           </ul>
+        </nav>
+        <!-- ボタン部分ここを後で追加するだけ-->
+        <div class="nav_btn" id="nav_btn">
+          <span class="hamburger_line hamburger_line1"></span>
+          <span class="hamburger_line hamburger_line2"></span>
+          <span class="hamburger_line hamburger_line3"></span>
         </div>
-      </nav>
+        <div class="nav_bg" id="nav_bg"></div>
+        <!-- /ボタン部分ここを後で追加するだけ-->
+
+      </div>
       <div class="content">@yield('content')</div>
 
     </div>
@@ -67,6 +76,23 @@
   <script>
     $(function() {
 
+      /* SP menu */
+      function toggleNav() {
+        var body = document.body;
+        var hamburger = document.getElementById('nav_btn');
+        var blackBg = document.getElementById('nav_bg');
+
+        hamburger.addEventListener('click', function() {
+          body.classList.toggle('nav_open'); //メニュークリックでnav-openというクラスがbodyに付与
+        });
+        blackBg.addEventListener('click', function() {
+          body.classList.remove('nav_open'); //もう一度クリックで解除
+        });
+      }
+      toggleNav();
+
+
+      /*モーダルダイアログ*/
       $('#Modal').on('show.bs.modal', function(event) { //ID部分をモーダルとして表示させるイベントが発生
 
         $('.modal-content tr').remove() //li要素をあらかじめ初期化
@@ -105,7 +131,7 @@
             })
             // Ajaxリクエストが成功した場合
             .done(function(data, textStatus, jqXHR) {
-              //redirect_to 'home';
+              //homeに遷移
               window.location = '/home';
             })
             // Ajaxリクエストが失敗した場合

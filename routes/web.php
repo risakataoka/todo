@@ -58,3 +58,6 @@ Route::delete('/home/want/{want}', 'HomeController@wantItemDelete');
 Route::delete('/home/do/{dotask}', 'HomeController@doItemDelete');
 Route::delete('/home/objective/{objective}', 'HomeController@objectiveItemDelete');
 Route::post('/home/month/{month}', 'HomeController@delete');
+
+//テスト用
+Route::get('home/test', 'HomeController@test');

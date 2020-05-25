@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
-        <div class="col-6">
+        <div class="col-md-6">
             <div class="day-area">
                 <h2 class="contents-name">Today</h2>
                 <a href="{{ url('additem/day') }}">
@@ -17,7 +17,7 @@
                             <form action="{{ url('home/day/'.$dy->id) }}" method="POST">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
-                                <input type="image" src="{{ asset('images/trash.png') }}" width="30" height="30" class="trash">
+                                <input type="image" src="{{ asset('images/trash.png') }}" width="20" height="20" class="trash">
                             </form>
                         </td>
                     </tr>
@@ -25,7 +25,7 @@
                 </table>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-md-6">
             <div class="month-area">
                 <h2 class="contents-name">Month</h2>
                 <a href="{{ url('additem/month') }}">
@@ -94,7 +94,7 @@
             </div>
         </div>
         <!--モーダルここまで-->
-        <div class="col-4">
+        <div class="col-md-4">
             <div class="want-area">
                 <h2 class="contents-name">Want</h2>
                 <a href="{{ url('additem/want') }}">
@@ -108,7 +108,7 @@
                             <form action="{{ url('home/want/'.$wt->id) }}" method="POST">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
-                                <input type="image" src="{{ asset('images/trash.png') }}" width="30" height="30" class="trash">
+                                <input type="image" src="{{ asset('images/trash.png') }}" width="20" height="20" class="trash">
                             </form>
                         </td>
                     </tr>
@@ -116,7 +116,7 @@
                 </table>
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-md-4">
             <div class="do-area">
                 <h2 class="contents-name">Do</h2>
                 <a href="{{ url('additem/do') }}">
@@ -130,7 +130,7 @@
                             <form action="{{ url('home/do/'.$dt->id) }}" method="POST">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
-                                <input type="image" src="{{ asset('images/trash.png') }}" width="30" height="30" class="trash">
+                                <input type="image" src="{{ asset('images/trash.png') }}" width="20" height="20" class="trash">
                             </form>
                         </td>
                     </tr>
@@ -138,7 +138,7 @@
                 </table>
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-md-4">
             <div class="objective-area">
                 <h2 class="contents-name">Objective</h2>
                 <a href="{{ url('additem/objective') }}">
@@ -152,7 +152,7 @@
                             <form action="{{ url('home/objective/'.$ob->id) }}" method="POST">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
-                                <input type="image" src="{{ asset('images/trash.png') }}" width="30" height="30" class="trash">
+                                <input type="image" src="{{ asset('images/trash.png') }}" width="20" height="20" class="trash">
                             </form>
                         </td>
                     </tr>
