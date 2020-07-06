@@ -13,10 +13,8 @@
 
             <nav>
                 <div class="container">
-                    <div class="menu">
-                        <ul class="flex">
-                            <li><a href="{{ action('TopController@top') }}"><img class="logo" src="{{ ('images/logo.png') }}" width="100" height="56" alt="logo"></a></li>
-                        </ul>
+                    <div id="top-header">
+                        <h1><a href="{{ url('/') }}"><img class="logo" src="{{ asset('images/logo.png') }}" width="100" height="56" alt="logo"></a></h1>
                     </div>
                 </div>
             </nav>

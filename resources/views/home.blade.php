@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-lg-6">
             <div class="day-area">
                 <h2 class="contents-name">Today</h2>
                 <a href="{{ url('additem/day') }}">
@@ -25,13 +25,17 @@
                 </table>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-lg-6">
             <div class="month-area">
                 <h2 class="contents-name">Month</h2>
                 <a href="{{ url('additem/month') }}">
                     <img class="plus-icon" src="{{ asset('images/plus.png') }}" width="40" height="40 " alt="plus">
                 </a>
                 <p class="calendarTitle">{{ $calendarTitle }}</p>
+                <div class="parent">
+                    <i class="fas fa-angle-double-left fa-2x"></i>
+                    <i class="fas fa-angle-double-right fa-2x"></i>
+                </div>
                 <table class="table table-bordered" style="table-layout:fixed;">
                     <tr>
                         @foreach (['月', '火', '水', '木', '金', '土', '日'] as $dayOfWeek)
@@ -94,7 +98,7 @@
             </div>
         </div>
         <!--モーダルここまで-->
-        <div class="col-md-4">
+        <div class="col-lg-4">
             <div class="want-area">
                 <h2 class="contents-name">Want</h2>
                 <a href="{{ url('additem/want') }}">
@@ -116,7 +120,7 @@
                 </table>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-lg-4">
             <div class="do-area">
                 <h2 class="contents-name">Do</h2>
                 <a href="{{ url('additem/do') }}">
@@ -138,7 +142,7 @@
                 </table>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-lg-4">
             <div class="objective-area">
                 <h2 class="contents-name">Objective</h2>
                 <a href="{{ url('additem/objective') }}">
