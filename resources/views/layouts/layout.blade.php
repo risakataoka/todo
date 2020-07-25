@@ -13,7 +13,7 @@
   <div class="wrapper">
     <div class="container">
       <div id="header">
-        <h1><a href="{{ url('/') }}"><img class="logo" src="{{ asset('images/logo.png') }}" width="100" height="56" alt="logo"></a></h1>
+        <h1><a href="{{ url('home') }}"><img class="logo" src="{{ asset('images/logo.png') }}" width="100" height="56" alt="logo"></a></h1>
         <nav>
           <ul id="navi">
             <li>

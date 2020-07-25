@@ -59,5 +59,9 @@ Route::delete('/home/do/{dotask}', 'HomeController@doItemDelete');
 Route::delete('/home/objective/{objective}', 'HomeController@objectiveItemDelete');
 Route::post('/home/month/{month}', 'HomeController@delete');
 
+//カレンダー翌月前月操作遷移
+Route::post('home', 'HomeController@index');
+
 //テスト用
 Route::get('home/test', 'HomeController@test');
+Route::post('/home/month/changemonth', 'HomeController@index');

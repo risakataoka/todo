@@ -32,9 +32,21 @@
                     <img class="plus-icon" src="{{ asset('images/plus.png') }}" width="40" height="40 " alt="plus">
                 </a>
                 <p class="calendarTitle">{{ $calendarTitle }}</p>
+                <p style="display: none;">{{ $defDateYear }}</p>
+                <p style="display: none;">{{ $defDateMonth }}</p>
                 <div class="parent">
-                    <i class="fas fa-angle-double-left fa-2x"></i>
-                    <i class="fas fa-angle-double-right fa-2x"></i>
+                    {{ Form::open(['url' => 'home', 'method' => 'post']) }}
+                    <input type="hidden" name="monthChange" value="prev">
+                    <input type="hidden" name="defDateY" value="{{ $defDateYear }}">
+                    <input type="hidden" name="defDateM" value="{{ $defDateMonth }}">
+                    <button type="submit" name="changemonth" style="background-color:transparent;"><i class="fas fa-angle-double-left fa-2x"></i></button>
+                    {{ Form::close() }}
+                    {{ Form::open(['url' => 'home', 'method' => 'post']) }}
+                    <input type="hidden" name="monthChange" value="next">
+                    <input type="hidden" name="defDateY" value="{{ $defDateYear }}">
+                    <input type="hidden" name="defDateM" value="{{ $defDateMonth }}">
+                    <button type="submit" name="changemonth" style="background-color:transparent;"><i class="fas fa-angle-double-right fa-2x"></i></button>
+                    {{ Form::close() }}
                 </div>
                 <table class="table table-bordered" style="table-layout:fixed;">
                     <tr>

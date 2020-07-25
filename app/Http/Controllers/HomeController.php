@@ -67,9 +67,35 @@ class HomeController extends Controller
             ->where('username', '=', $name)
             ->get();
 
-        $year = 2020;
-        $month = 4;
+        //デフォルトで現在の年と月をカレンダーとして表示
+        $now = new Carbon;
+        $year = $now->format('Y');
+        $month = $now->format('m');
+
+        $makeDate =  $request->input('monthChange');
+        $defDateY = $request->input('defDateY');
+        $defDateM = $request->input('defDateM');
+
+        $defDateStr = sprintf('%04d-%02d-01', $defDateY, $defDateM);
+        $defDate = new Carbon($defDateStr);
+        //\Debugbar::info($defDateY);
+        //\Debugbar::info($defDateM);
+        //\Debugbar::info($makeDate);
+
+        if ($makeDate == "prev") {
+            $prevDate = $defDate->addMonths(-1);
+            $year = $prevDate->format('Y');
+            $month = $prevDate->format('m');
+        } elseif ($makeDate == "next") {
+            $nextDate = $defDate->addMonths(1);
+            $year = $nextDate->format('Y');
+            $month = $nextDate->format('m');
+        }
+
         $calendarTitle = $year . "年" . $month . "月";
+        $defDateYear = $year;
+        $defDateMonth = $month;
+
 
         //yyyy-mm-ddの形式にする
         $dateStr = sprintf('%04d-%02d-01', $year, $month);
@@ -92,6 +118,8 @@ class HomeController extends Controller
             'monthData' => $monthData,
             'dates' => $dates,
             'calendarTitle' => $calendarTitle,
+            'defDateYear' => $defDateYear,
+            'defDateMonth' => $defDateMonth,
         ]);
     }
     //★★day★★
@@ -249,9 +277,15 @@ class HomeController extends Controller
         return redirect('/home');
     }
 
-    public function test()
+    public function test2(Request $request)
     {
+        $name =  $request->input('name');
+        \Debugbar::info($name);
 
-        return view('test');
+        $nameadd = $name . "くん";
+        $now = new Carbon;
+        return view('test2', [
+            'nameadd' => $nameadd
+        ]);
     }
 }

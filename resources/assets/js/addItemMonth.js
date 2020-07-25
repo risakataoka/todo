@@ -1,8 +1,4 @@
 $(function() {
-  /*$(".flg-icon").mouseover(function() {
-    alert("こんにちは");
-  });*/
-
   $(".flg-icon")
     .mouseover(function() {
       // 「?」にマウスが重なった場合の処理です。
@@ -39,7 +35,7 @@ $(function() {
       popupObj
         .css({
           top: offsetTop,
-          left: offsetLeft
+          left: offsetLeft,
         })
         .show(speed);
     })
@@ -64,7 +60,7 @@ $(function() {
       marginTop: 0,
       marginLeft: 20,
       className: "flg-icon-window",
-      speed: 300
+      speed: 300,
     };
 
     var options = $.extend(defaults, config);
@@ -90,7 +86,7 @@ $(function() {
           popupObj
             .css({
               top: offsetTop,
-              left: offsetLeft
+              left: offsetLeft,
             })
             .show(defaults.speed);
         })

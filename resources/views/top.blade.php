@@ -21,7 +21,6 @@
 
 
             <div class="button-area">
-                <p>あああああ</p>
                 <div class="inline-block-buttton">
                     <a href="{{ action('AdminController@login') }}" class="btn-login">login</a>
                 </div>
